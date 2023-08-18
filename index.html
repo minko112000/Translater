@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>ဖွတ်ထိုင်း</title>
+    <script src="https://kit.fontawesome.com/c3ce1fe727.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #2f599d;
+  color: #c7c7c7;
+}
+
+nav {
+  height: 55px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: 900;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.box {
+  height: calc(100% - 152px);
+  width: calc(100% - 12px);
+  padding: 0 6px;
+  margin-top: 12px;
+  margin-left: 6px;
+  border-radius: 2px;
+}
+
+.box textarea {
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1),
+              -1px -1px 4px rgba(0, 0, 0, 0.1);
+  height: calc(50% - 75px);
+  width: 100%;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 6px;
+  margin-top: 6px;
+  color: #c7c7c7;
+  resize: none;
+  font-size: 1em;
+}
+
+#translate {
+  height: 45px;
+  width: 100%;
+  margin: 5px 0;
+  border: none;
+  outline: none;
+  background: rgba(255, 255, 255, .1);
+  backdrop-filter: blur(2px);
+  border-radius: 2px;
+  font-size: 1.2em;
+  font-weight: 500;
+  color: #c7c7c7;
+  user-select: none;
+  cursor: pointer;
+  letter-spacing: 1px;
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1),
+              -1px -1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lan-box {
+  height: 55px;
+  width: 100%;
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.lan-box b {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 30px;
+}
+
+.lan-box > b {
+  height: 50px;
+  width: 125px;
+  background: rgba(255, 255, 255, .1);
+  backdrop-filter: blur(2px);
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1),
+              -1px -1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.lan-box > b b {
+  height: calc(100% - 6px);
+  width: calc(100% - 6px);
+  background: #2f599d;
+  font-size: 1.2em;
+  letter-spacing: 1px;
+}
+
+
+.lan-box i {
+  height: 50px;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 12px;
+  font-size: 1.5em;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .1);
+  backdrop-filter: blur(2px);
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 1px 7px rgba(0, 0, 0, 0.1),
+              -1px -1px 4px rgba(0, 0, 0, 0.1);
+}
+    </style>
+  </head>
+  <body>
+    
+    <nav>
+      ဖွတ်ထိုင်း
+    </nav>
+    <div class="lan-box">
+      <b><b class="from">Myanmar</b></b>
+      <i id="change" class="vb to-thai fa-solid fa-arrow-right-arrow-left"></i>
+      <b><b class="to">Thailand</b></b>
+    </div>
+    <div class="box">
+      <textarea class="from-text" placeholder="Myanmar"></textarea>
+      <button id="translate" class="vb" type="button">Translate</button>
+      <textarea class="to-text" disabled placeholder="Thailand"></textarea>
+    </div>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+let from = 'my'
+let to = 'th'
+
+$('.vb').click(function () {
+  navigator.vibrate(30)
+})
+
+$('#change').click(function () {
+  let fText = $('.from-text').val()
+  let tText = $('.to-text').val()
+  if ($(this).hasClass('to-thai')) {
+    from = 'th'
+    to = 'my'
+    $('.from').text('Thailand')
+    $('.to').text('Myanmar')
+    $('.from-text').val(tText)
+    $('.to-text').val(fText)
+    $('.from-text').attr('placeholder', 'Thailand')
+    $('.to-text').attr('placeholder', 'Myanmar')
+    $(this).removeClass('to-thai')
+  } else {
+    from = 'my'
+    to = 'th'
+    $('.from').text('Myanmar')
+    $('.to').text('Thailand')
+    $('.from-text').val(tText)
+    $('.to-text').val(fText)
+    $('.from-text').attr('placeholder', 'Myanmar')
+    $('.to-text').attr('placeholder', 'Thailand')
+    $(this).addClass('to-thai')
+  }
+})
+
+$('#translate').click(function () {
+  $('.to-text').val('Translation ......')
+  let text = $('.from-text').val()
+  const settings = {
+  	async: true,
+  	crossDomain: true,
+  	url: 'https://google-translate1.p.rapidapi.com/language/translate/v1',
+  	method: 'POST',
+  	headers: {
+  		'content-type': 'application/x-www-form-urlencoded',
+  		'Accept-Encoding': 'application/gzip',
+  		'X-RapidAPI-Key': '2e3c3d547emshacac60927e7d8b9p102f5fjsn89b3e573f530',
+  		'X-RapidAPI-Host': 'google-translate1.p.rapidapi.com'
+  	},
+  	data: {
+  		q: text,
+  		target: to,
+  		source: from
+  	}
+  };
+  
+  $.ajax(settings).done(function (response) {
+  	let res_text = response.data.translations[0].translatedText;
+  	tText = $('.to-text').val(res_text)
+  });
+})
+
+$('#copy-text').click(function () {
+  let text = $('.to-text').val()
+  navigator.clipboard.writeText(text)
+})
+    </script>
+  </body>
+</html>
